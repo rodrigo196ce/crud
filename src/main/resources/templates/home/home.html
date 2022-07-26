@@ -10,9 +10,12 @@
 
     <div class="row">
         <div class="col-4">
+            <div th:if="${success != null}">
+                <div class="alert alert-success" role="alert" th:text="${success}"></div>
+            </div>
             <div class="list-group">
                 <a th:href="@{/cadastrar}" class="list-group-item list-group-item-action list-group-item-light">Cadastrar</a>
-                <a th:href="@{#}" class="list-group-item list-group-item-action list-group-item-light">Filtrar</a>
+                <a th:href="@{/filtrar/}" class="list-group-item list-group-item-action list-group-item-light">Filtrar</a>
             </div>
         </div>
     </div>

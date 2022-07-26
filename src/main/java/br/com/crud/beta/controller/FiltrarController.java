@@ -1,2 +1,5 @@
-package br.com.crud.beta.controller;public class FiltrarController {
+package br.com.crud.beta.controller;
+
+public class FiltrarController {
+    
 }

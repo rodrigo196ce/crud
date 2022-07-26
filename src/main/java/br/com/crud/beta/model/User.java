@@ -25,9 +25,8 @@ public class User {
     private String cep;
 
     public User(){}
-    public User(Integer id, String nome, LocalDate dataNascimento, String email, String telefone, String rua, Integer numero,
+    public User(String nome, LocalDate dataNascimento, String email, String telefone, String rua, Integer numero,
                 String complemento, String bairro, Cidade cidade, String cep) {
-        this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.email = email;

@@ -9,7 +9,7 @@
     <div th:replace="~{base :: titulo('Cadastrar')}"></div>
 
     <div class="d-grid gap-2 d-md-block">
-        <a class="btn btn-light mb-3" th:href="@{/home}" role="button">Voltar</a>
+        <a class="btn btn-light mb-3" th:href="@{/home/}" role="button">Voltar</a>
     </div>
     <div class="row">
         <div class="card col-5">
@@ -85,7 +85,7 @@
 
                 <div class="mb-3">
                     <label for="exampleInputCep" class="form-label">Cep</label>
-                    <input th:field="*{cep}" th:errorclass="is-invalid" type="text" class="form-control" id="exampleInputCep">
+                    <input th:field="*{cep}" th:errorclass="is-invalid" type="text" class="form-control" id="exampleInputCep" maxlength="8">
                     <div class="invalid-feedback" th:errors="*{cep}"></div>
                 </div>
 

@@ -1,12 +1,14 @@
 package br.com.crud.beta.dto;
 
 import br.com.crud.beta.enums.Cidade;
+import br.com.crud.beta.model.User;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class CadastroDto {
 
@@ -111,7 +113,11 @@ public class CadastroDto {
         this.cep = cep;
     }
 
-    public void ToCadastro(){
-
+    public User ToCadastro(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dataNascimento = LocalDate.parse(this.dataNascimento,formatter);
+        Integer numero = Integer.valueOf(this.numero);
+       return new User(this.nome,dataNascimento,this.email,this.telefone,this.rua,numero,this.complemento,
+                this.bairro,this.cidade,this.cep);
     }
 }
