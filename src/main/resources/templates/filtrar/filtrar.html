@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{base :: head}"></head>
+<body>
+<div th:replace="~{base :: logo}"></div>
+
+<div class="container">
+
+    <div th:replace="~{base :: titulo('Filtro')}"></div>
+
+    <div class="d-grid gap-2 d-md-block">
+        <a class="btn btn-light mb-3" th:href="@{/home/}" role="button">Voltar</a>
+    </div>
+
+    <div class="card mt-3">
+        <div class="shadow-none p-3 mb-0 bg-light rounded">Preencha os campos que deseja realizar o filtro.</div>
+        <form th:object="${filtroDto}" class="card-body" th:action="@{/filtrar/realizar}" method="post">
+            <div class="row g-2 mb-3">
+                <div class="col">
+                    <label for="exampleInputNome" class="form-label">Nome</label>
+                    <input th:field="*{nome}" type="text" class="form-control" id="exampleInputNome" maxlength="50">
+                </div>
+                <div class="col">
+                    <label for="exampleInputDate" class="form-label">Data de nascimento</label>
+                    <input th:field="*{dataNascimento}" type="date" class="form-control" id="exampleInputDate"
+                           min="1930-01-01" max="2015-01-01">
+                </div>
+            </div>
+            <div class="row g-2 mb-3">
+                <div class="col">
+                    <label for="exampleInputEmail" class="form-label">E-mail</label>
+                    <input th:field="*{email}" type="email" class="form-control" id="exampleInputEmail" placeholder="name@example.com"
+                           minlength="15" maxlength="35">
+                </div>
+                <div class="col">
+                    <label for="exampleInputTel" class="form-label">Telefone</label>
+                    <input th:field="*{telefone}" type="tel" class="form-control" id="exampleInputTel" placeholder="85984567890"
+                           pattern="[0-9]{11}" maxlength="11">
+                </div>
+            </div>
+            <div class="row g-2 mb-3">
+                <div class="col">
+                    <label for="exampleInputCidade" class="form-label">Cidade</label>
+                    <select th:field="*{cidade}" class="form-select" id="exampleInputCidade" aria-label="Default select example">
+                        <option th:value="${null}">Selecione a cidade</option>
+                        <div th:each="cidade : ${cidades}">
+                            <option th:value="${cidade}" th:text="${cidade.descricao}"></option>
+                        </div>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-outline-success" type="submit">Filtrar</button>
+        </form>
+    </div>
+
+    <div class="card mt-3" th:each="user : ${lista}">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-sm-8 mb-3">
+                    Nome <p th:text="${user.nome}" class="fw-light"></p>
+                    Data nascimento <p th:text="${user.dataNascimento}" class="fw-light"></p>
+                    E-mail <p th:text="${user.email}" class="fw-light"></p>
+                    Telefone <p th:text="${user.telefone}" class="fw-light"></p>
+                    Rua <p th:text="${user.rua}" class="fw-light"></p>
+                    Número <p th:text="${user.numero}" class="fw-light"></p>
+                    Complemento <p th:text="${user.complemento}" class="fw-light"></p>
+                    Bairro <p th:text="${user.bairro}" class="fw-light"></p>
+                    Cidade <p th:text="${user.cidade.descricao}" class="fw-light"></p>
+                    Cep <p th:text="${user.cep}" class="fw-light"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
