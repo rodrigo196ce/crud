@@ -53,10 +53,10 @@
         </form>
     </div>
 
-    <div class="card mt-3" th:each="user : ${lista}">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-12 col-sm-8 mb-3">
+    <div class="row">
+        <div class="col-6">
+            <div class="card mt-3" th:each="user : ${lista}">
+                <div class="card-body">
                     Nome <p th:text="${user.nome}" class="fw-light"></p>
                     Data nascimento <p th:text="${user.dataNascimento}" class="fw-light"></p>
                     E-mail <p th:text="${user.email}" class="fw-light"></p>
