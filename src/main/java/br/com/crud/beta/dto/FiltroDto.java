@@ -15,6 +15,7 @@ public class FiltroDto {
     private String telefone;
     @Enumerated(EnumType.STRING)
     private Cidade cidade;
+    private String page;
 
     public String getNome() {
         return nome;
@@ -54,5 +55,13 @@ public class FiltroDto {
 
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
     }
 }

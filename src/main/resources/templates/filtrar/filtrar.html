@@ -72,6 +72,21 @@
         </div>
     </div>
 
+    <nav aria-label="...">
+        <ul class="pagination pagination-sm">
+            <div th:each="total : ${totalPages}">
+                <li class="page-item"><a class="page-link" th:href="@{/filtrar/realizar/
+                        (nome=${#request.getParameter('nome')},
+                        dataNascimento=${#request.getParameter('dataNascimento')},
+                        email=${#request.getParameter('email')},
+                        telefone=${#request.getParameter('telefone')},
+                        cidade=${#request.getParameter('cidade')},
+                        page=${totalStat.index})}">
+                    <span th:text="${totalStat.index}"></span></a></li>
+            </div>
+        </ul>
+    </nav>
+
 </div>
 </body>
 </html>
