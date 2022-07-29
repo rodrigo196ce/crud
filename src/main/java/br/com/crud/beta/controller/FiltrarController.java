@@ -38,7 +38,7 @@ public class FiltrarController {
     @RequestMapping("realizar")
     public String realizar(FiltroDto filtroDto, Model model, HttpServletRequest request) {
         LocalDate localDate = null;
-        if(filtroDto.getDataNascimento()!=null){
+        if (filtroDto.getDataNascimento() != null) {
             if (!filtroDto.getDataNascimento().isEmpty()) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 localDate = LocalDate.parse(filtroDto.getDataNascimento(), formatter);
@@ -46,13 +46,13 @@ public class FiltrarController {
         }
 
         Integer page;
-        if(filtroDto.getPage()==null){
-            page=0;
-        }else{
+        if (filtroDto.getPage() == null) {
+            page = 0;
+        } else {
             page = Integer.valueOf(filtroDto.getPage());
         }
-        if(filtroDto.getNome()!=null){
-            if(filtroDto.getNome().isBlank()){
+        if (filtroDto.getNome() != null) {
+            if (filtroDto.getNome().isBlank()) {
                 filtroDto.setNome(null);
             }
         }
@@ -60,9 +60,8 @@ public class FiltrarController {
         Page<User> lista = this.filtroService
                 .filtrar(filtroDto.getNome(), localDate, filtroDto.getEmail(), filtroDto.getTelefone(), filtroDto.getCidade(), page,
                         filtroDto.getTipo());
-        System.out.println(lista.getTotalPages());
 
-        if(lista.getTotalPages()>1){
+        if (lista.getTotalPages() > 1) {
             int[] arrayTotalPages = new int[lista.getTotalPages()];
             model.addAttribute("totalPages", arrayTotalPages);
         }
