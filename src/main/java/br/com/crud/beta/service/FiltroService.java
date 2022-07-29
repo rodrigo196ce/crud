@@ -21,15 +21,19 @@ public class FiltroService {
     @Autowired
     UserRepository userRepository;
 
-    public Page<User> filtrar(String nome, LocalDate dataNascimento, String email, String telefone, Cidade cidade,Integer page) {
-        return this.userRepository.findAll(Specification
-                        .where(
-                                SpecificationFiltro.nome(nome))
-                        .or(SpecificationFiltro.dataNascimento(dataNascimento))
-                        .or(SpecificationFiltro.email(email))
-                        .or(SpecificationFiltro.telefone(telefone))
-                        .or(SpecificationFiltro.cidade(cidade))
-                , PageRequest.of(page, 3, Sort.by("nome")));
+    public Page<User> filtrar(String nome, LocalDate dataNascimento, String email, String telefone, Cidade cidade,Integer page,String tipo) {
+        if(tipo.equals("todos")){
+            return this.userRepository.findAll(PageRequest.of(page, 3, Sort.by("nome")));
+        }else{
+            return this.userRepository.findAll(Specification
+                            .where(
+                                    SpecificationFiltro.nome(nome))
+                            .or(SpecificationFiltro.dataNascimento(dataNascimento))
+                            .or(SpecificationFiltro.email(email))
+                            .or(SpecificationFiltro.telefone(telefone))
+                            .or(SpecificationFiltro.cidade(cidade))
+                    , PageRequest.of(page, 3, Sort.by("nome")));
+        }
     }
 
 }

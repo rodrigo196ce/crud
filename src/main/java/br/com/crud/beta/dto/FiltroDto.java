@@ -16,6 +16,7 @@ public class FiltroDto {
     @Enumerated(EnumType.STRING)
     private Cidade cidade;
     private String page;
+    private String tipo;
 
     public String getNome() {
         return nome;
@@ -63,5 +64,13 @@ public class FiltroDto {
 
     public void setPage(String page) {
         this.page = page;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

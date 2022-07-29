@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import java.awt.print.Pageable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -34,30 +36,36 @@ public class FiltrarController {
     }
 
     @RequestMapping("realizar")
-    public String realizar(FiltroDto filtroDto, Model model) {
+    public String realizar(FiltroDto filtroDto, Model model, HttpServletRequest request) {
         LocalDate localDate = null;
-        if (!filtroDto.getDataNascimento().isEmpty()) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            localDate = LocalDate.parse(filtroDto.getDataNascimento(), formatter);
+        if(filtroDto.getDataNascimento()!=null){
+            if (!filtroDto.getDataNascimento().isEmpty()) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                localDate = LocalDate.parse(filtroDto.getDataNascimento(), formatter);
+            }
         }
+
         Integer page;
         if(filtroDto.getPage()==null){
             page=0;
         }else{
             page = Integer.valueOf(filtroDto.getPage());
         }
-        if(filtroDto.getNome().isBlank()){
-            filtroDto.setNome(null);
+        if(filtroDto.getNome()!=null){
+            if(filtroDto.getNome().isBlank()){
+                filtroDto.setNome(null);
+            }
         }
 
         Page<User> lista = this.filtroService
-                .filtrar(filtroDto.getNome(), localDate, filtroDto.getEmail(), filtroDto.getTelefone(), filtroDto.getCidade(), page);
+                .filtrar(filtroDto.getNome(), localDate, filtroDto.getEmail(), filtroDto.getTelefone(), filtroDto.getCidade(), page,
+                        filtroDto.getTipo());
 
         int[] arrayTotalPages = new int[lista.getTotalPages()];
 
         model.addAttribute("lista", lista);
-        model.addAttribute("cidades",Cidade.values());
-        model.addAttribute("totalPages",arrayTotalPages);
+        model.addAttribute("cidades", Cidade.values());
+        model.addAttribute("totalPages", arrayTotalPages);
         return "filtrar/filtrar.html";
     }
 

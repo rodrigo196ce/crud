@@ -14,7 +14,7 @@
 
     <div class="card mt-3">
         <div class="shadow-none p-3 mb-0 bg-light rounded">Preencha os campos que deseja realizar o filtro.</div>
-        <form th:object="${filtroDto}" class="card-body" th:action="@{/filtrar/realizar}" method="post">
+        <form th:object="${filtroDto}" class="card-body" th:action="@{/filtrar/realizar/(tipo='filtro')}" method="post">
             <div class="row g-2 mb-3">
                 <div class="col">
                     <label for="exampleInputNome" class="form-label">Nome</label>
@@ -97,6 +97,7 @@
             <div th:each="total : ${totalPages}">
                 <li class="page-item"><a class="page-link" th:href="@{/filtrar/realizar/
                         (nome=${#request.getParameter('nome')},
+                        tipo=${#request.getParameter('tipo')},
                         dataNascimento=${#request.getParameter('dataNascimento')},
                         email=${#request.getParameter('email')},
                         telefone=${#request.getParameter('telefone')},
