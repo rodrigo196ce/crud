@@ -46,6 +46,9 @@ public class FiltrarController {
         }else{
             page = Integer.valueOf(filtroDto.getPage());
         }
+        if(filtroDto.getNome().isBlank()){
+            filtroDto.setNome(null);
+        }
 
         Page<User> lista = this.filtroService
                 .filtrar(filtroDto.getNome(), localDate, filtroDto.getEmail(), filtroDto.getTelefone(), filtroDto.getCidade(), page);

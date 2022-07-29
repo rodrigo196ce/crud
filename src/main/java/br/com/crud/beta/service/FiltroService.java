@@ -22,7 +22,6 @@ public class FiltroService {
     UserRepository userRepository;
 
     public Page<User> filtrar(String nome, LocalDate dataNascimento, String email, String telefone, Cidade cidade,Integer page) {
-
         return this.userRepository.findAll(Specification
                         .where(
                                 SpecificationFiltro.nome(nome))
@@ -31,15 +30,6 @@ public class FiltroService {
                         .or(SpecificationFiltro.telefone(telefone))
                         .or(SpecificationFiltro.cidade(cidade))
                 , PageRequest.of(page, 3, Sort.by("nome")));
-
-
-//        return this.userRepository.findAll(Specification
-//                .where(
-//                        SpecificationFiltro.nome(nome)
-//                                .or(SpecificationFiltro.dataNascimento(dataNascimento)
-//                                        .or(SpecificationFiltro.email(email)
-//                                                .or(SpecificationFiltro.telefone(telefone)
-//                                                        .or(SpecificationFiltro.cidade(cidade)))))));
     }
 
 }

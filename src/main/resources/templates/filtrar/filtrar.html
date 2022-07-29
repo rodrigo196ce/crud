@@ -49,7 +49,10 @@
                     </select>
                 </div>
             </div>
-            <button class="btn btn-outline-success" type="submit">Filtrar</button>
+            <div class="d-grid gap-2 d-md-block">
+                <button class="btn btn-outline-success" type="submit">Filtrar</button>
+                <a class="btn btn-outline-success" th:href="@{/filtrar/realizar/(tipo='todos')}" role="button">Visualizar todos</a>
+            </div>
         </form>
     </div>
 
@@ -62,20 +65,22 @@
                         <div class="col-6">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Nome <p th:text="${user.nome}" class="fw-light"></p></li>
-                                <li class="list-group-item">Data nascimento <p th:text="${user.dataNascimento}" class="fw-light"></p></li>
+                                <li class="list-group-item">Data nascimento <p th:text="${#temporals.format(user.dataNascimento,'dd/MM/yyyy')}"
+                                                                               class="fw-light"></p></li>
                                 <li class="list-group-item">E-mail <p th:text="${user.email}" class="fw-light"></p></li>
                                 <li class="list-group-item">Telefone <p th:text="${user.telefone}" class="fw-light"></p></li>
                             </ul>
                             <div class="mt-5">
-                                <a class="btn btn-warning" th:href="@{#}" role="button">Editar</a>
-                                <a class="btn btn-danger" th:href="@{#}" role="button">Deletar</a>
+                                <a class="btn btn-outline-warning" th:href="@{#}" role="button">Editar</a>
+                                <a class="btn btn-outline-danger" th:href="@{#}" role="button">Deletar</a>
                             </div>
                         </div>
                         <div class="col-6">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Rua <p th:text="${user.rua}" class="fw-light"></p></li>
                                 <li class="list-group-item">Número <p th:text="${user.numero}" class="fw-light"></p></li>
-                                <li class="list-group-item">Complemento <p th:text="${user.complemento}" class="fw-light"></p></li>
+                                <li class="list-group-item">Complemento <p
+                                        th:text="${#strings.isEmpty(user.complemento)} ? 'S/N' : ${user.complemento}" class="fw-light"></p></li>
                                 <li class="list-group-item">Bairro <p th:text="${user.bairro}" class="fw-light"></p></li>
                                 <li class="list-group-item">Cidade <p th:text="${user.cidade.descricao}" class="fw-light"></p></li>
                                 <li class="list-group-item">Cep <p th:text="${user.cep}" class="fw-light"></p></li>
