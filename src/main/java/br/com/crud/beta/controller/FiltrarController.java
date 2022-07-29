@@ -60,12 +60,14 @@ public class FiltrarController {
         Page<User> lista = this.filtroService
                 .filtrar(filtroDto.getNome(), localDate, filtroDto.getEmail(), filtroDto.getTelefone(), filtroDto.getCidade(), page,
                         filtroDto.getTipo());
+        System.out.println(lista.getTotalPages());
 
-        int[] arrayTotalPages = new int[lista.getTotalPages()];
-
+        if(lista.getTotalPages()>1){
+            int[] arrayTotalPages = new int[lista.getTotalPages()];
+            model.addAttribute("totalPages", arrayTotalPages);
+        }
         model.addAttribute("lista", lista);
         model.addAttribute("cidades", Cidade.values());
-        model.addAttribute("totalPages", arrayTotalPages);
         return "filtrar/filtrar.html";
     }
 
