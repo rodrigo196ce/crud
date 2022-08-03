@@ -56,4 +56,9 @@ public class UserService {
         user.setCep(editarDto.getCep());
     }
 
+    @Transactional
+    public void deletar(User user){
+        this.userRepository.delete(user);
+    }
+
 }

@@ -15,6 +15,9 @@
             <div th:if="${successEdicao != null}">
                 <div class="alert alert-success" role="alert" th:text="${successEdicao}"></div>
             </div>
+            <div th:if="${successDelete != null}">
+                <div class="alert alert-success" role="alert" th:text="${successDelete}"></div>
+            </div>
             <div class="list-group">
                 <a th:href="@{/cadastrar}" class="list-group-item list-group-item-action list-group-item-light">Cadastrar</a>
                 <a th:href="@{/filtrar/}" class="list-group-item list-group-item-action list-group-item-light">Filtrar</a>
