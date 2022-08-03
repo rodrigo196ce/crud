@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{base :: head}"></head>
+<body>
+<div th:replace="~{base :: logo}"></div>
+
+<div class="container">
+
+    <div th:replace="~{base :: titulo('Editar')}"></div>
+
+    <div class="d-grid gap-2 d-md-block">
+        <a class="btn btn-light mb-3" th:href="@{/home/}" role="button">Voltar</a>
+    </div>
+
+    <div class="row mt-3">
+        <div class="card col-5">
+            <form th:object="${editarDto}" class="card-body" th:action="@{/editar/validarEdicao}" method="post">
+                <input th:field="*{id}" type="hidden">
+                <div class="mb-3">
+                    <label for="exampleInputNome" class="form-label">Nome</label>
+                    <input th:field="*{nome}" th:errorclass="is-invalid" type="text" class="form-control" id="exampleInputNome"
+                           minlength="10" maxlength="50">
+                    <div class="invalid-feedback" th:errors="*{nome}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputDate" class="form-label">Data de nascimento</label>
+                    <input th:field="*{dataNascimento}" th:errorclass="is-invalid" type="date" class="form-control" id="exampleInputDate"
+                            min="1930-01-01"  max="2015-01-01">
+                    <div class="invalid-feedback" th:errors="*{dataNascimento}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail" class="form-label">E-mail</label>
+                    <input th:field="*{email}" th:errorclass="is-invalid" type="email" class="form-control" id="exampleInputEmail"
+                           aria-describedby="emailHelp" placeholder="name@example.com" minlength="15" maxlength="35">
+                    <div id="emailHelp" class="form-text">Insira seu e-mail com o padrão descrito.</div>
+                    <div class="invalid-feedback" th:errors="*{email}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputTel" class="form-label">Telefone</label>
+                    <input th:field="*{telefone}" th:errorclass="is-invalid" type="tel" class="form-control" id="exampleInputTel"
+                           aria-describedby="telHelp" placeholder="85984567890" pattern="[0-9]{11}" maxlength="11">
+                    <div id="telHelp" class="form-text">Insira seu telefone com o padrão descrito.</div>
+                    <div class="invalid-feedback" th:errors="*{telefone}"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <label for="exampleInputRua" class="form-label">Rua</label>
+                        <input th:field="*{rua}" th:errorclass="is-invalid" type="text" class="form-control" id="exampleInputRua">
+                        <div class="invalid-feedback" th:errors="*{rua}"></div>
+                    </div>
+                    <div class="col-3 mb-3">
+                        <label for="exampleInputRua" class="form-label">Número</label>
+                        <input th:field="*{numero}" th:errorclass="is-invalid" type="number" class="form-control" id="exampleInputNumero"
+                               min="1">
+                        <div class="invalid-feedback" th:errors="*{numero}"></div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputComplemento" class="form-label">Complemento</label>
+                    <input th:field="*{complemento}" type="text" class="form-control" id="exampleInputComplemento"
+                           placeholder="Opcional" maxlength="50">
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputBairro" class="form-label">Bairro</label>
+                    <input th:field="*{bairro}" th:errorclass="is-invalid" type="text" class="form-control" id="exampleInputBairro"
+                           maxlength="50">
+                    <div class="invalid-feedback" th:errors="*{bairro}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputCidade" class="form-label">Cidade</label>
+                    <select th:field="*{cidade}" class="form-select" id="exampleInputCidade" aria-label="Default select example">
+                        <div th:each="cidade : ${cidades}">
+                            <option th:value="${cidade}" th:text="${cidade.descricao}"></option>
+                        </div>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputCep" class="form-label">Cep</label>
+                    <input th:field="*{cep}" th:errorclass="is-invalid" type="text" class="form-control" id="exampleInputCep" maxlength="8">
+                    <div class="invalid-feedback" th:errors="*{cep}"></div>
+                </div>
+
+                <button type="submit" class="btn btn-success">Editar</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

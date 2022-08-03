@@ -1,42 +1,35 @@
-package br.com.crud.beta.model;
+package br.com.crud.beta.dto;
 
 import br.com.crud.beta.enums.Cidade;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-@Entity
-@Table(name="users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class EditarDto {
+
     private Integer id;
+    @NotBlank(message = "O campo é obrigatório.")
     private String nome;
-    private LocalDate dataNascimento;
+    @NotBlank(message = "O campo é obrigatório.")
+    private String dataNascimento;
+    @NotBlank(message = "O campo é obrigatório.")
     private String email;
+    @NotBlank(message = "O campo é obrigatório.")
     private String telefone;
+    @NotBlank(message = "O campo é obrigatório.")
     private String rua;
+    @NotNull(message = "O campo é obrigatório.")
     private Integer numero;
     private String complemento;
+    @NotBlank(message = "O campo é obrigatório.")
     private String bairro;
     @Enumerated(EnumType.STRING)
     private Cidade cidade;
+    @NotBlank(message = "O campo é obrigatório.")
     private String cep;
-
-    public User(){}
-    public User(String nome, LocalDate dataNascimento, String email, String telefone, String rua, Integer numero,
-                String complemento, String bairro, Cidade cidade, String cep) {
-        this.nome = nome;
-        this.dataNascimento = dataNascimento;
-        this.email = email;
-        this.telefone = telefone;
-        this.rua = rua;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.cep = cep;
-    }
 
     public Integer getId() {
         return id;
@@ -54,11 +47,11 @@ public class User {
         this.nome = nome;
     }
 
-    public LocalDate getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -125,4 +118,5 @@ public class User {
     public void setCep(String cep) {
         this.cep = cep;
     }
+
 }
